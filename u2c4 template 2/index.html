@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="common.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link "href="index.js">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div id="navbar">
+      <h1><a href="index.html">Home</a></h1>
+      <h1><a href="./matches.html">Matches</a></h1>
+      <h1><a href="./favourites.html">Favourites</a></h1>
+    </div>
+    <h1 class="heading">Masai Premier League (MPL)</h1>
+    <!-- Form -->
+    <form id="masaiForm">
+      <input id="matchNum" type="number" placeholder="Match Number" />
+      <select id="teamA">
+        <option value="none">Select Team A</option>
+        <option value="Vikings">Vikings</option>
+        <option value="Spartans">Spartans</option>
+        <option value="Samurai">Samurai</option>
+        <option value="Ninja">Ninja</option>
+        <option value="Apache">Apache</option>
+        <option value="Titans">Titans</option>
+      </select>
+      <select id="teamB">
+        <option value="none">Select Team B</option>
+        <option value="Vikings">Vikings</option>
+        <option value="Spartans">Spartans</option>
+        <option value="Samurai">Samurai</option>
+        <option value="Ninja">Ninja</option>
+        <option value="Apache">Apache</option>
+        <option value="Titans">Titans</option>
+      </select>
+      <input id="date" type="date" />
+      <select id="venue">
+        <option value="none">Select Venue</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Banglore">Banglore</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Pune">Pune</option>
+      </select>
+      <input type="submit" value="Add Match" />
+    </form>
+  </body>
+</html>
+
+<script >
+  var masaiform=document.querySelector("#masaiForm");
+masaiform.addEventListener("submit",myfunc1)
+var match_detail=[];
+function myfunc1(){
+   event.preventDefault()
+   console.log("c")
+ var data={
+
+  match_number:masaiForm.matchNum.value,
+  teamA:masaiForm.teamA.value,
+  teamB:masaiForm.teamB.value,
+  date:masaiForm.date.value,
+  venue:masaiForm.venue.value,
+ }
+console.log(data)
+match_detail.push(data);
+localStorage.setItem("schedule",JSON.stringify(match_detail))
+
+
+
+}
+</script>

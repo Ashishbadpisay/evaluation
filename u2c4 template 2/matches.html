@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="common.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matches</title>
+    <link href="matches.js">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div id="navbar">
+      <h1><a href="index.html">Home</a></h1>
+      <h1><a href="./matches.html">Matches</a></h1>
+      <h1><a href="./favourites.html">Favourites</a></h1>
+    </div>
+
+    <select id="filterVenue">
+      <option value="none">Filter by venue</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Banglore">Banglore</option>
+      <option value="Hyderabad">Hyderabad</option>
+      <option value="Delhi">Delhi</option>
+      <option value="Pune">Pune</option>
+    </select>
+    <h1 class="heading">Match Schedule</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Match Number</th>
+          <th>Team A</th>
+          <th>Team B</th>
+          <th>Date</th>
+          <th>Venue</th>
+          <th>Favourite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- All the matches gets appended here  -->
+      </tbody>
+    </table>
+  </body>
+</html>
+
+<script >
+  var schedule=JSON.parse(localStorage.getItem("schedule"));
+display(schedule)
+var fvrtlist=[];
+function display(schedule){
+schedule.forEach(element => {
+  var tr=document.createElement("tr");
+  
+  var td1=document.createElement("td")
+  td1.innerText=element.match_number
+
+  var td2=document.createElement("td");
+  td2.innerText=element.teamA
+  var td3=document.createElement("td");
+  td3.innerText=element.teamB
+  var td4=document.createElement("td");
+  td4.innerText=element.date
+  var td5=document.createElement("td");
+  td5.innerText=element.venue
+  var td6=document.createElement("td");
+  td6.innerText="Favourite"
+  td6.style.color="blue";
+  td6.style.cursor="Pointer"
+  td6.addEventListener("click",function(){
+
+    addfvrt(element)
+    
+
+  })
+  tr.append(td1,td2,td3,td4,td5,td6)
+  document.querySelector("tbody").append(tr)
+});
+}
+
+function addfvrt(element)
+{
+  fvrtlist.push(element)
+  localStorage.setItem("favourites",JSON.stringify(fvrtlist))
+
+}
+</script>
